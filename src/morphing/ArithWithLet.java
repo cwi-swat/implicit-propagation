@@ -1,9 +1,9 @@
 package morphing;
 
+import modules.arith.Int;
 import modules.binding.Env;
 import modules.binding.EvalLet;
 import modules.binding.IEvalBinding;
-import modules.values.Int;
 import modules.values.Value;
 
 public class ArithWithLet implements EvalArithWithBindingManual, EvalLet {

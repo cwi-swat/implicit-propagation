@@ -1,4 +1,6 @@
-package modules.values;
+package modules.storage;
+
+import modules.values.Value;
 
 public class Cell implements Value {
 	private final Integer id;

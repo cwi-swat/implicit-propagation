@@ -1,6 +1,5 @@
 package modules.arith;
 
-import modules.values.Int;
 
 public interface EvalArith extends ArithAlg<IEvalBase> {
 	@Override

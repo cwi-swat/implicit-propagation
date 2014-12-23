@@ -1,8 +1,8 @@
-package modules.values;
+package modules.binding;
 
 import java.util.function.Function;
 
-import modules.binding.Env;
+import modules.values.Value;
 
 public class Closure implements Value {
 	final private Env env;

@@ -1,7 +1,6 @@
 package modules.storage;
 
-import modules.values.Cell;
-import modules.values.Int;
+import modules.arith.Int;
 
 public interface EvalStorage extends StoreAlg<IEvalStore> {
 	@Override

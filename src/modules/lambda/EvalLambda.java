@@ -1,7 +1,7 @@
 package modules.lambda;
 
+import modules.binding.Closure;
 import modules.binding.IEvalBinding;
-import modules.values.Closure;
 
 public interface EvalLambda extends LambdaAlg<IEvalBinding> {
 	@Override

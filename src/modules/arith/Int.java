@@ -1,4 +1,6 @@
-package modules.values;
+package modules.arith;
+
+import modules.values.Value;
 
 public class Int implements Value {
 	private final int value;
