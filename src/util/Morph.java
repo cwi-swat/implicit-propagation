@@ -47,6 +47,23 @@ public class Morph {
 				new Morpher<U>(e, outgoing, mapping, params1, params2));
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static <T> T unsafeMorph(Class<T> t, Class<?> u, Object e) {
+		assert isFunctional(t); assert isFunctional(u);
+
+		
+		Method incoming = t.getMethods()[0]; 
+		Method outgoing = u.getMethods()[0]; 
+
+		Parameter[] params1 = incoming.getParameters();
+		Parameter[] params2 = outgoing.getParameters();
+		
+		Map<Integer,Integer> mapping = match(params1, params2);
+	
+		return (T) Proxy.newProxyInstance(t.getClassLoader(), new Class<?>[] { t }, 
+				new Morpher(e, outgoing, mapping, params1, params2));
+	}
+	
 	
 	
 //	public static void main(String[] args) {
