@@ -24,7 +24,7 @@ public class RT {
 		}
 	}
 	
-	private static <T> void push(String name, T x) {
+	public static <T> void push(String name, T x) {
 		if (!stacks.containsKey(name)) {
 			stacks.put(name, new Stack<>());
 		}
@@ -33,7 +33,7 @@ public class RT {
 	
 	
 	
-	private static <T> void pop(String name) {
+	public static <T> void pop(String name) {
 		stacks.get(name).pop();
 	}
 	

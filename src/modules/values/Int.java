@@ -10,5 +10,9 @@ public class Int implements Value {
 	public int getValue() {
 		return value;
 	}
-	
+
+	@Override
+	public String toString() {
+		return value + "";
+	}
 }
