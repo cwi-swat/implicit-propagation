@@ -1,17 +1,28 @@
 package modules.jumps;
 
-import modules.binding.IEvalBinding;
+import modules.arith.IEvalBase;
 
-public interface EvalGoto extends GotoAlg<IEvalBinding> {
+public interface EvalGoto extends GotoAlg<IEvalBase> {
 
 	@Override
-	default IEvalBinding jump(String label) {
-		return (env) -> ((Cont)env.lookup(label)).eval(env);
+	default IEvalBase jump(String label) {
+		return () -> { throw new Jump(label); };
 	}
 	
 	@Override
-	default IEvalBinding label(String label, IEvalBinding body) {
-		return (env) -> body.eval(env.bind(label, new Cont(body)));
+	default IEvalBase label(String label, IEvalBase body) {
+		return () -> {
+			while (true) {
+				try {
+					return body.eval();
+				}
+				catch (Jump j) {
+					if (!j.getLabel().equals(label)) {
+						throw j;
+					}
+				}
+			}
+		};
 	}
 	
 }
