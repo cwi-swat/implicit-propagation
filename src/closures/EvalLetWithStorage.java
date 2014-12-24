@@ -1,6 +1,5 @@
 package closures;
 
-import desugaring.IEvalBindingAndStorage;
 import modules.binding.IEvalBinding;
 import modules.binding.LetAlg;
 

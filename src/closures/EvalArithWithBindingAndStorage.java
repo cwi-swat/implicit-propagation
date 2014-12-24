@@ -1,6 +1,5 @@
 package closures;
 
-import desugaring.IEvalBindingAndStorage;
 import modules.arith.ArithAlg;
 import modules.binding.IEvalBinding;
 

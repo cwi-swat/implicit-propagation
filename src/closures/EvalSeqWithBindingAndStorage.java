@@ -1,6 +1,5 @@
 package closures;
 
-import desugaring.IEvalBindingAndStorage;
 import modules.arith.IEvalBase;
 import modules.sequence.SeqAlg;
 
