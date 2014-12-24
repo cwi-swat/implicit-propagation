@@ -6,7 +6,7 @@ import modules.binding.IEvalBinding;
 public interface EvalLambda extends LambdaAlg<IEvalBinding> {
 	@Override
 	default IEvalBinding lambda(String x, IEvalBinding body) {
-		return env -> new Closure(env, x, e -> body.eval(e));
+		return env -> new Closure(v -> body.eval(env.bind(x, v)));
 	}
 	
 	@Override

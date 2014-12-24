@@ -5,18 +5,14 @@ import java.util.function.Function;
 import modules.values.Value;
 
 public class Closure implements Value {
-	final private Env env;
-	final private Function<Env, Value> func;
-	private String x;
+	final private Function<Value, Value> func;
 
-	public Closure(Env env, String x, Function<Env, Value> func) {
-		this.env = env;
-		this.x = x;
+	public Closure(Function<Value, Value> func) {
 		this.func = func;
 	}
 	
 	public Value apply(Value v) {
-		return func.apply(env.bind(x, v));
+		return func.apply(v);
 	}
 	
 }

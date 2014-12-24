@@ -1,6 +1,7 @@
 package modules.binding;
 
 public interface LetAlg<E> {
-	E let(String x, E e, E body);
+	@Order(2) 
+	E let(String x, @Order(1) E e, @Order(3) E body);
 	E var(String x);
 }
