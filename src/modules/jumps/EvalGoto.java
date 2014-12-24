@@ -11,6 +11,7 @@ public interface EvalGoto extends GotoAlg<IEvalBase> {
 	
 	@Override
 	default IEvalBase label(String label, IEvalBase body) {
+		// TODO: this only allow back jumps.
 		return () -> {
 			while (true) {
 				try {
