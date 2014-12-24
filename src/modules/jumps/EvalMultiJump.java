@@ -16,28 +16,29 @@ public interface EvalMultiJump extends MultiJumpAlg<IEvalBase> {
 	
 	@Override
 	default IEvalBase labeled(Pair<String, IEvalBase> ...pairs) {
-		Map<String, Integer> table = new HashMap<>();
-		int i = 0;
 		// Assumes labels are unique in pairs
-		for (Pair<String, IEvalBase> p: pairs) {
-			table.put(p.a(), i);
+
+		Map<String, Integer> table = new HashMap<>();
+		for (int i = 0; i < pairs.length; i++) {
+			table.put(pairs[i].a(), i);
 			i++;
 		}
+		
 		return () -> {
-			int j = 0;
+			int i = 0;
 			Value v = new Null();
-			while (j < pairs.length) {
+			while (i < pairs.length) {
 				try {
-					v = pairs[j].b().eval();
+					v = pairs[i].b().eval();
 				}
 				catch (Jump e) {
 					if (!table.containsKey(e.getLabel())) {
 						throw e;
 					}
-					j = table.get(e.getLabel());
+					i = table.get(e.getLabel());
 					continue;
 				}
-				j++;
+				i++;
 			}
 			return v;
 		};
