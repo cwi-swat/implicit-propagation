@@ -12,7 +12,7 @@ public interface EvalArithWithBinding extends ArithAlg<IEvalBinding> {
 	
 	@Override
 	default IEvalBinding add(IEvalBinding l, IEvalBinding r) {
-		Lifter x = new Lifter();
+		Lifter x = new Lifter(); // bit unfortunate that there's no single expression to do this.
 		return x.lift(alg().add(x.lower(l), x.lower(l))); 
 	}
 	
