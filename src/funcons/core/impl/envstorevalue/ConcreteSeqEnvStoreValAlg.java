@@ -9,9 +9,9 @@ public interface ConcreteSeqEnvStoreValAlg extends SeqAlg<IEvalEnvStoreVal, IEva
 
 	@Override
 	default IEvalEnvStoreVal seq(IEvalEnvStoreVal c1, IEvalEnvStoreVal c2) {
-		return (rho, store, value) -> {
-			if (c1.eval(rho, store, value) instanceof Skip){
-				return c2.eval(rho, store, value);
+		return (esv) -> {
+			if (c1.eval(esv) instanceof Skip){
+				return c2.eval(esv);
 			}
 			else throw new RuntimeException("Stuck");
 		};

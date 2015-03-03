@@ -10,4 +10,17 @@ public class Int implements Value{
 	public int getValue(){
 		return val;
 	}
+	
+	@Override
+	public String toString(){
+		return Integer.toString(val);
+	}
+	
+	@Override
+	public boolean equals(Object other){
+		if (other instanceof Int){
+			return ((Int)other).val == this.val;
+		}
+		return false;
+	}
 }

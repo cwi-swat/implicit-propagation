@@ -7,8 +7,8 @@ import funcons.evaluators.IEvalEnvStoreVal;
 public interface ConcreteEffectEnvStoreValAlg extends EffectAlg<IEvalEnvStoreVal, IEvalEnvStoreVal> {
 	@Override
 	default IEvalEnvStoreVal effect(IEvalEnvStoreVal e) {
-		return (rho, store, value) -> {
-			e.eval(rho, store, value);
+		return esv -> {
+			e.eval(esv);
 			return Skip.getInstance();
 		};
 	}

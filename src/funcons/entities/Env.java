@@ -35,4 +35,9 @@ public class Env<T> implements EnvProvider<T>{
 		// TODO Auto-generated method stub
 		return this;
 	}
+	
+	@Override	
+	public String toString(){
+		return this.map.toString();
+	}
 }

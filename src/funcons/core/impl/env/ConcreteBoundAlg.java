@@ -8,6 +8,6 @@ public class ConcreteBoundAlg implements BoundAlg<IEvalEnv>{
 
 	@Override
 	public IEvalEnv boundValue(I i) {
-		return env -> env.lookup(i.toString());
+		return e -> e.lookup(i.toString());
 	}
 }

@@ -6,6 +6,6 @@ import funcons.evaluators.IEvalEnvStoreVal;
 public interface ConcreteGivenEnvStoreValAlg extends GivenAlg<IEvalEnvStoreVal>{
 	@Override
 	default IEvalEnvStoreVal given() {
-		return (e,s,v) -> v;
+		return (esv) -> esv._3();
 	}
 }

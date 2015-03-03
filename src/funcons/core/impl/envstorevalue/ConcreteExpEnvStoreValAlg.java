@@ -8,7 +8,7 @@ public interface ConcreteExpEnvStoreValAlg extends ExpAlg<IEvalEnvStoreVal>{
 
 	@Override
 	default IEvalEnvStoreVal constant(Value v) {
-		return (rho, sigma, value) -> v;
+		return esv -> v;
 	}
 
 	

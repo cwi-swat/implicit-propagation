@@ -8,6 +8,6 @@ public interface ConcreteBoundEnvStoreValAlg extends BoundAlg<IEvalEnvStoreVal>{
 
 	@Override
 	default IEvalEnvStoreVal boundValue(I i) {
-		return (env,s,v) -> env.lookup(i.toString());
+		return esv -> esv._1().lookup(i.toString());
 	}
 }

@@ -1,11 +1,11 @@
-package funcons.core;
+package funcons.core.experiments;
 
 import funcons.entities.Env;
 import funcons.entities.Value;
 import funcons.evaluators.IEvalEnv;
 import funcons.evaluators.IEvalEnvEnv;
 
-interface ScopeAlg<D,X> {
+public interface ScopeAlg<D,X> {
 	// Caml Light
 	X scope(D rho, X e);
 	

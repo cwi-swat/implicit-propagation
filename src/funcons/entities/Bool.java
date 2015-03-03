@@ -11,4 +11,12 @@ public class Bool implements Value{
 		return val;
 	}
 
+	
+	@Override
+	public boolean equals(Object other){
+		if (other instanceof Bool){
+			return ((Bool) other).val == this.val;
+		}
+		return false;
+	}
 }

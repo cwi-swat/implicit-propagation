@@ -10,13 +10,13 @@ public interface ConcreteControlEnvStoreValAlg extends ControlAlg<IEvalEnvStoreV
 	
 	@Override
 	default IEvalEnvStoreVal ifTrue(IEvalEnvStoreVal e, IEvalEnvStoreVal c1, IEvalEnvStoreVal c2) {
-		return (rho, store, value) -> {
-			Value v = e.eval(rho, store, value);
+		return rhs -> {
+			Value v = e.eval(rhs);
 			if (v instanceof Bool){
 				if (((Bool) v).getValue())
-					return c1.eval(rho, store, value);
+					return c1.eval(rhs);
 				else {
-					return c2.eval(rho, store, value);
+					return c2.eval(rhs);
 				}
 			}
 			else 
@@ -26,7 +26,7 @@ public interface ConcreteControlEnvStoreValAlg extends ControlAlg<IEvalEnvStoreV
 	
 	@Override
 	default IEvalEnvStoreVal skip(){
-		return (rho, store, value) -> Skip.getInstance();
+		return (rhs) -> Skip.getInstance();
 	}
 	
 }
