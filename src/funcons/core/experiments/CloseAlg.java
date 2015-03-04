@@ -33,14 +33,3 @@ interface IEvalEnvRetSame extends Abstraction<Env<Value>, IEvalEnv> {
  * IEvalEnvRetSame close(IEvalEnvRetSame x){ return (rho)->{ return
  * abs(closure(x, new EnvDeclaration(rho))); }; } }
  */
-
-interface CloseAlgConcrete
-		extends
-		AbsAlg<Value, IEvalEnv>,
-		ClosureAlg<IEvalEnv, Declaration>, CloseAlg<IEvalEnv> {
-	default IEvalEnv close(IEvalEnv x) {
-		return (rho) -> {
-			return abs(closure(x, new EnvDeclaration(rho)));
-		};
-	}
-}

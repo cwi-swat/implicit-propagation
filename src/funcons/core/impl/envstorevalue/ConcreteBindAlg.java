@@ -1,4 +1,4 @@
-package funcons.core.impl.env;
+package funcons.core.impl.envstorevalue;
 
 import funcons.core.experiments.BindAlg;
 import funcons.entities.Env;
