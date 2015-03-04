@@ -123,13 +123,13 @@ public class TestAll {
 				a.camlApply(a.camlI(iszero), a.camlConstant(new Int(0))));
 	}
 	
-	//@Test
+	@Test
 	public void test1(){
 		SimpleLangDelegationAlg<IEvalBasic> a = new ConcreteSimpleLangDelegationAlg();
 		assertEquals(3, ((Int) e1(a).eval()).getValue());
 	}
 	
-	//@Test
+	@Test
 	public void test2(){
 		Language22Alg<IEvalEnvStoreVal, IEvalEnvStoreVal> a = new ConcreteLanguage22Alg(){};
 		Env<Value> e = new Env<Value>();
