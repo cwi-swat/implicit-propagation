@@ -1,4 +1,4 @@
-package nl.cwi.examples
+package nl.cwi.improp.examples
 
 import scala.collection._
 

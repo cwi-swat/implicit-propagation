@@ -1,4 +1,4 @@
-package nl.cwi.examples.fj
+package nl.cwi.improp.examples.fj
 
 import junit.framework.TestCase
 import org.junit.Test

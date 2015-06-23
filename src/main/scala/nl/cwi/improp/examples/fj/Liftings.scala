@@ -1,4 +1,4 @@
-package nl.cwi.examples.fj
+package nl.cwi.improp.examples.fj
 
 //type EvSlfCtESt2Obj =  (Obj, CT, Env, Sto) => Obj
 

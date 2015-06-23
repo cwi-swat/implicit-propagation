@@ -1,4 +1,4 @@
-package nl.cwi.examples.fj
+package nl.cwi.improp.examples.fj
 
 import scala.collection.mutable.MutableList
 import scala.util.control.Breaks._

@@ -1,4 +1,4 @@
-package nl.cwi.examples.fj
+package nl.cwi.improp.examples.fj
 
 
 class CTBuilder extends LJ[Clazz, Method, CT]{
