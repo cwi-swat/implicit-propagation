@@ -4,6 +4,6 @@ import funcons.entities.Env;
 import funcons.entities.Value;
 
 @FunctionalInterface
-public interface IEvalValueRetEnv {
+public interface IEvalValueRetEnv extends Value{
 	Env<Value> eval(Value v);
 }

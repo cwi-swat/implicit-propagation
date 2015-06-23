@@ -1,8 +1,8 @@
 package funcons.languages;
 
-import funcons.core.ControlAlg;
+import funcons.core.ConstantAlg;
 import funcons.core.EffectAlg;
-import funcons.core.ExpAlg;
+import funcons.core.IfWhileTrueAlg;
 import funcons.core.SeqAlg;
 import funcons.evaluators.IEvalBasic;
 
@@ -11,9 +11,9 @@ import funcons.evaluators.IEvalBasic;
 // for a simple language with just expressions
 public interface SimpleLangDelegationAlg<E> extends
 	EffectAlg<E,E>, SeqAlg<E,E>, 
-	ControlAlg<E, E>, ExpAlg<E>{
+	IfWhileTrueAlg<E, E>, ConstantAlg<E>{
 	SeqAlg<IEvalBasic, IEvalBasic> seqAlg();
-	ControlAlg<IEvalBasic, IEvalBasic> controlAlg();
-	ExpAlg<IEvalBasic> expAlg();
+	IfWhileTrueAlg<IEvalBasic, IEvalBasic> ifWhileTrueAlg();
+	ConstantAlg<IEvalBasic> expAlg();
 	EffectAlg<IEvalBasic, IEvalBasic> effectAlg();
 }

@@ -1,13 +1,13 @@
 package funcons.languages.impl;
 
-import funcons.core.ControlAlg;
+import funcons.core.ConstantAlg;
 import funcons.core.EffectAlg;
-import funcons.core.ExpAlg;
+import funcons.core.IfWhileTrueAlg;
 import funcons.core.SeqAlg;
-import funcons.core.impl.noarguments.ConcreteControlAlg;
-import funcons.core.impl.noarguments.ConcreteEffectAlg;
-import funcons.core.impl.noarguments.ConcreteExpAlg;
-import funcons.core.impl.noarguments.ConcreteSeqAlg;
+import funcons.core.impl.basic.ConcreteConstantAlg;
+import funcons.core.impl.basic.ConcreteEffectAlg;
+import funcons.core.impl.basic.ConcreteIfWhileTrueAlg;
+import funcons.core.impl.basic.ConcreteSeqAlg;
 import funcons.entities.Value;
 import funcons.evaluators.IEvalBasic;
 import funcons.languages.SimpleLangDelegationAlg;
@@ -30,19 +30,19 @@ public class ConcreteSimpleLangDelegationAlg implements SimpleLangDelegationAlg<
 	@Override
 	public IEvalBasic ifTrue(IEvalBasic e, IEvalBasic c1, IEvalBasic c2) {
 		// TODO Auto-generated method stub
-		return controlAlg().ifTrue(e, c1, c2);
+		return ifWhileTrueAlg().ifTrue(e, c1, c2);
 	}
 
 	@Override
 	public IEvalBasic whileTrue(IEvalBasic e, IEvalBasic c) {
 		// TODO Auto-generated method stub
-		return controlAlg().whileTrue(e, c);
+		return ifWhileTrueAlg().whileTrue(e, c);
 	}
 
 	@Override
 	public IEvalBasic skip() {
 		// TODO Auto-generated method stub
-		return controlAlg().skip();
+		return ifWhileTrueAlg().skip();
 	}
 	
 
@@ -61,18 +61,18 @@ public class ConcreteSimpleLangDelegationAlg implements SimpleLangDelegationAlg<
 	}
 	
 	@Override
-	public ControlAlg<IEvalBasic, IEvalBasic> controlAlg() {
+	public IfWhileTrueAlg<IEvalBasic, IEvalBasic> ifWhileTrueAlg() {
 		
 		// TODO Auto-generated method stub
-		return new ConcreteControlAlg(){
+		return new ConcreteIfWhileTrueAlg(){
 			
 		};
 	}
 
 	@Override
-	public ExpAlg<IEvalBasic> expAlg() {
+	public ConstantAlg<IEvalBasic> expAlg() {
 		// TODO Auto-generated method stub
-		return new ConcreteExpAlg(){
+		return new ConcreteConstantAlg(){
 			
 		};
 	}

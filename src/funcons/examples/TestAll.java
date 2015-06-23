@@ -21,10 +21,13 @@ import funcons.evaluators.IEvalBasic;
 import funcons.evaluators.IEvalEnvStoreVal;
 import funcons.evaluators.IEvalEnvStoreValFail;
 import funcons.evaluators.IEvalEnvStoreValFailRetEnv;
+import funcons.evaluators.IEvalEnvStoreValMulti;
+import funcons.evaluators.IEvalEnvStoreValMultiRetEnv;
 import funcons.evaluators.IEvalEnvStoreValRetEnv;
 import funcons.languages.CamlLightAlg;
 import funcons.languages.CamlLightConcreteAlg;
 import funcons.languages.CamlLightConcreteAlgWithFailure;
+import funcons.languages.CamlLightConcreteMultiAlg;
 import funcons.languages.Language22Alg;
 import funcons.languages.SimpleLangDelegationAlg;
 import funcons.languages.impl.ConcreteLanguage22Alg;
@@ -200,4 +203,27 @@ public class TestAll {
 		//assertTrue(false);
 	}
 
+	@Test
+	public void test8(){
+		CamlLightAlg<IEvalEnvStoreValMulti, IEvalEnvStoreValMultiRetEnv,IEvalEnvStoreValMultiRetEnv, IEvalEnvStoreValMulti> a = new CamlLightConcreteMultiAlg(){};
+		Env<Value> e = new Env<Value>();
+		Store s = new Store();
+		Value v = new Int(42);
+		Value result = e7(a).eval(e, s, v);
+		System.out.println(result);
+		assertEquals('f', ((Char) e7(a).eval(e, s , v)).getValue());
+		//assertTrue(false);
+	}
+	
+	@Test
+	public void test9(){
+		CamlLightAlg<IEvalEnvStoreValMulti, IEvalEnvStoreValMultiRetEnv,IEvalEnvStoreValMultiRetEnv, IEvalEnvStoreValMulti> a = new CamlLightConcreteMultiAlg(){};
+		Env<Value> e = new Env<Value>();
+		Store s = new Store();
+		Value v = new Int(42);
+		Value result = e8(a).eval(e, s, v);
+		System.out.println(result);
+		assertEquals('t', ((Char) e8(a).eval(e, s, v)).getValue());
+		//assertTrue(false);
+	}
 }

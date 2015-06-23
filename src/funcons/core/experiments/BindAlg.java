@@ -14,7 +14,6 @@ interface BindAlg<X> extends AbsAlg<X>{
 */
 
 public interface BindAlg<X,D, P> extends AbsAlg<D,P>, GivenAlg<X>{
-	
 	default P bind(I id){
 		return abs(bind(id, given()));
 	}

@@ -29,11 +29,11 @@ import funcons.core.GivenAlg;
  */
 
 public interface Abs2Alg<X,E,D,P>
-		extends ScopeAlg<D, X>, MatchAlg<E, D, P>, GivenAlg<E> {
-	AbsAlg<X, E> absAlg();
+		extends ScopeAlg<D, E>, MatchAlg<E, D, P>, GivenAlg<E> {
+	AbsAlg<E, X> absAlg();
 
-	default E abs(P p, X x) {
-		return absAlg().abs(scope(match(given(), p), x));
+	default X abs(P p, E e) {
+		return absAlg().abs(scope(match(given(), p), e));
 	}
 
 }

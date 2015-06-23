@@ -1,10 +1,10 @@
 package funcons.core.impl.envstorevalue;
 
-import funcons.core.ExpAlg;
+import funcons.core.ConstantAlg;
 import funcons.entities.Value;
 import funcons.evaluators.IEvalEnvStoreVal;
 
-public interface ConcreteExpEnvStoreValAlg extends ExpAlg<IEvalEnvStoreVal>{
+public interface ConcreteExpEnvStoreValAlg extends ConstantAlg<IEvalEnvStoreVal>{
 
 	@Override
 	default IEvalEnvStoreVal constant(Value v) {

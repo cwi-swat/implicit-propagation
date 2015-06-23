@@ -1,9 +1,6 @@
 package funcons.core.experiments;
 
 import funcons.core.SupplyAlg;
-import funcons.entities.Abstraction;
-import funcons.evaluators.IEvalBasic;
-import funcons.evaluators.IEvalWithValue;
 
 /*
  public interface ApplyAlg<E, T>{
@@ -63,72 +60,6 @@ public interface ApplyAlg<From, To, X>
 		return supply(v, getAbstracted(p));
 	}
 }
- 
-class ConcreteApplyAlg implements ApplyAlg<IEvalBasic, IEvalWithValue, Abstraction<IEvalBasic,IEvalWithValue>>{
-
-	@Override
-	public Abstraction<IEvalBasic, IEvalWithValue> abs(IEvalWithValue f) {
-		return (iEvalBasic) -> f;
-	}
-
-	@Override
-	public IEvalWithValue getAbstracted(
-			Abstraction<IEvalBasic, IEvalWithValue> x) {
-		return x.eval(null);
-	}
-
-	@Override
-	public IEvalWithValue supply(IEvalBasic v, IEvalWithValue x) {
-		// TODO Auto-generated method stub
-		return v_ -> x.eval(v.eval());
-	}
-
-	
-	
-}
-//
-//class ConcreteApplyAlg
-//		implements
-//		ApplyAlg<IEvalWithValue, IEvalWithValue, Abstraction<IEvalWithValue, IEvalWithValue>, ParameterlessAbstraction<Abstraction<IEvalWithValue,IEvalWithValue>>> {
-//
-//	/*
-//	@Override
-//	public Abstraction<IEvalWithValue, Abstraction<IEvalWithValue, IEvalWithValue>> abs(
-//			Abstraction<IEvalWithValue, IEvalWithValue> e) {
-//		// TODO Auto-generated method stub
-//		return (iev) -> e;
-//	}
-//
-//	@Override
-//	public Abstraction<IEvalWithValue, IEvalWithValue> getAbstracted(
-//			Abstraction<IEvalWithValue, Abstraction<IEvalWithValue, IEvalWithValue>> f) {
-//		// Just to capture the closure
-//		return f.eval(null);
-//	}
-//*/
-//	// ???????????
-//	@Override
-//	public Abstraction<IEvalWithValue, IEvalWithValue> supply(IEvalWithValue v,
-//			Abstraction<IEvalWithValue, IEvalWithValue> x) {
-//		// TODO Auto-generated method stub
-//		return v_ -> x.eval((IEvalWithValue) v.eval(v_));
-//	}
-//
-//	@Override
-//	public ParameterlessAbstraction<Abstraction<IEvalWithValue, IEvalWithValue>> abs(
-//			Abstraction<IEvalWithValue, IEvalWithValue> x) {
-//		// TODO Auto-generated method stub
-//		return dummy -> x;
-//	}
-//
-//	@Override
-//	public Abstraction<IEvalWithValue, IEvalWithValue> getAbstracted(
-//			ParameterlessAbstraction<Abstraction<IEvalWithValue, IEvalWithValue>> f) {
-//		// TODO Auto-generated method stub
-//		return f.eval(new None());
-//	}
-//
-//}
 
 /*
  * class ConcreteApplyAlg implements ApplyAlg<IEvalWithValue, IEvalWithValue,

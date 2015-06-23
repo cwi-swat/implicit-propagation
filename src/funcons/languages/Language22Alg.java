@@ -5,7 +5,7 @@ import java.util.Arrays;
 import funcons.core.AssignAlg;
 import funcons.core.BoundAlg;
 import funcons.core.EffectAlg;
-import funcons.core.ExpAlg;
+import funcons.core.ConstantAlg;
 import funcons.core.GivenAlg;
 import funcons.core.SeqAlg;
 import funcons.core.SupplyAlg;
@@ -18,7 +18,7 @@ import funcons.entities.Value;
  */
 public interface Language22Alg<C,E> extends AssignAlg<E>, 
 	BoundAlg<E>, GivenAlg<E>, SeqAlg<E, E>, SupplyAlg<E, E>,
-	EffectAlg<C, E>, ExpAlg<E>{
+	EffectAlg<C, E>, ConstantAlg<E>{
 	
 	default E l22Assign(I i, E e){
 		return supply(e, seq(assign(boundValue(i), given()), given()));

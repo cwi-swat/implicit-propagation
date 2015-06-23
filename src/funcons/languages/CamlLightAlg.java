@@ -2,17 +2,17 @@ package funcons.languages;
 
 import funcons.core.ArithAlg;
 import funcons.core.BoundAlg;
-import funcons.core.ExpAlg;
+import funcons.core.ConstantAlg;
 import funcons.core.experiments.Abs2Alg;
 import funcons.core.experiments.AnyAlg;
 import funcons.core.experiments.ApplyAlg;
 import funcons.core.experiments.BindAlg;
 import funcons.core.experiments.CloseAlg;
-import funcons.core.experiments.ClosureAlg;
 import funcons.core.experiments.MatchAlg;
 import funcons.core.experiments.OnlyAlg;
 import funcons.core.experiments.PreferOverAlg;
 import funcons.core.experiments.ScopeAlg;
+import funcons.core.impl.basic.ClosureAlg;
 import funcons.entities.I;
 import funcons.entities.Value;
 import funcons.entities.experiments.AnyPattern;
@@ -37,7 +37,7 @@ public interface CamlLightAlg<E,D,P,F>
 	//GivenAlg<E>, 
 	//SeqAlg<E, E>,
 	//EffectAlg<C, E>, 
-	ExpAlg<E>, 
+	ConstantAlg<E>, 
 	BindAlg<E, D, P>, 
 	AnyAlg<D,P>,
 	OnlyAlg<D, P, E, E>,
