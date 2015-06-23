@@ -48,34 +48,14 @@ object lift{
         val base: Trait = importer.importTrait(baseType)
         val srcFun: FunType = importer.importType(srcType).asInstanceOf[FunType]
         
-        //val result = nl.cwi.improp.codegen.templates.txt.Simple.render(lifted, alg, base, srcFun, threading, tempVar, addedTyp).body
         val result = render(lifted, alg, base, srcFun, addedTyp)
         println(result)
-        //c.Expr[Any](q"""$mods trait $liftedName""")
         c.Expr[Any](c.parse(result))
       }
       case _ => c.abort(c.enclosingPosition, "Invalid annottee")
       // Add validation and error handling here.
      }
   }
-
-     
-/*
- * @import nl.cwi.improp.codegen._
-
-@(lifted: Trait, alg: Trait, baseAlg: Trait, from: FunType, threading: Boolean, tempVar: String, addedTy: Type)
-
-trait @(lifted.name) extends @(lifted.extending.mkString(", ")){
-  val base@(alg.name): @(alg.name)[@(from.toString)] = new @(baseAlg.name){}
-  @if(threading){var @tempVar: @addedTy = _ } else{}
-  @for(m <- lifted.methods) {
-  def @(m.name)(@m.params.map{case (name, ty) => @name:@ty}.mkString(", ") ) : @m.rTy 
-    = @m.expr
-  }
-  
-}
- */
-
      
   def render(lifted: Trait, alg: Trait, baseAlg: Trait, srcFun: FunType, addedType: Type): String = {
     def liftedMethods = lifted.methods.map
