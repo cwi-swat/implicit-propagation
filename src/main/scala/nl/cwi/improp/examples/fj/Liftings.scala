@@ -91,8 +91,8 @@ trait EvSlfCtESt2ObjSeq extends Seq[EvSlfCtESt2Obj] {
           () => e2(thiz, ct, env, sto))()
 }
 
-trait LJImpl extends Ev2ClazzEvSlfCtESt2ObjProgram with Ev2MethEvSlfCtESt2ObjMethodDef with EvSlfCtESt2MethEvSlfCtESt2ClazzClazzDef
+trait SFJImpl extends Ev2ClazzEvSlfCtESt2ObjProgram with Ev2MethEvSlfCtESt2ObjMethodDef with EvSlfCtESt2MethEvSlfCtESt2ClazzClazzDef
   with EvSlfCtESt2ObjRef with EvSlfCtESt2ObjField with EvSlfCtESt2ObjCall with EvSlfCtESt2ObjCast
   with EvSlfCtESt2ObjNew with EvSlfCtESt2ObjSetField with EvSlfCtESt2ObjSeq
-  with LJ[EvSlfCtESt2Clazz, EvSlfCtESt2Meth, EvSlfCtESt2Obj]
+  with SFJ[EvSlfCtESt2Clazz, EvSlfCtESt2Meth, EvSlfCtESt2Obj]
   

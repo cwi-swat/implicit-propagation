@@ -60,8 +60,8 @@ class FJTest extends TestCase {
         
    @Test def test1 = {
     var st: Sto = scala.collection.mutable.Map()
-    val lj = new LJImpl{}
-    val o = ex1(lj)(null, null, Map(), st)
+    val sfj = new SFJImpl{}
+    val o = ex1(sfj)(null, null, Map(), st)
     assertEquals("new One()", o.toString())
   }
         
@@ -109,7 +109,7 @@ class FJTest extends TestCase {
    */
   
 
-  def ex2[L, M, E, R](alg: LJ[L, M, E]): E =
+  def ex2[L, M, E, R](alg: SFJ[L, M, E]): E =
     alg.prog(
         alg.call(alg.newObj("A", List(alg.newObj("One", List()))), "setNumberToTwo", List()),
         Set(
@@ -122,11 +122,10 @@ class FJTest extends TestCase {
   
   @Test def test2 = {
     var st: Sto = scala.collection.mutable.Map()
-    val lj = new LJImpl{}
-    val o = ex2(lj)(null, null, Map(), st)
+    val sfj = new SFJImpl{}
+    val o = ex2(sfj)(null, null, Map(), st)
     val ct = ex2(new CTBuilder)
     assertEquals("new A(new Two())", getObj(o.hashCode(), st, ct).toString())
-    //assertEquals("new Two()", st(st(o.hashCode())._2("number")).toString())
   }
   
     /*
@@ -172,7 +171,7 @@ class FJTest extends TestCase {
    * 
    */
   
-    def ex3[L, M, E, R](alg: LJ[L, M, E]): E =
+    def ex3[L, M, E, R](alg: SFJ[L, M, E]): E =
     alg.prog(
         alg.field(alg.call(alg.newObj("A", List(alg.newObj("One", List()))), "setNumberToTwo", List()), "number"),
         Set(
@@ -185,8 +184,8 @@ class FJTest extends TestCase {
   
   @Test def test3 = {
     var st: Sto = scala.collection.mutable.Map()
-    val lj = new LJImpl{}
-    val o = ex3(lj)(null, null, Map(), st)
+    val sfj = new SFJImpl{}
+    val o = ex3(sfj)(null, null, Map(), st)
     val ct = ex2(new CTBuilder)
     assertEquals("new Two()", getObj(o.hashCode(), st, ct).toString())
   }

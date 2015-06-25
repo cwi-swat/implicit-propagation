@@ -23,8 +23,6 @@ trait Cast[E]{ def cast(c: Str, e: E): E }
 trait FJ[L,M,E] extends Program[L, E] with ClazzDef[M, L] with MethodDef[M, E]
   with Ref[E] with Field[E] with Call[E] with Cast[E] with New[E]
 
-trait LJ[L,M,E] extends FJ[L,M,E] with SetField[E] with Seq[E]
-
 trait Ev2ClazzEvCt2ObjProgram extends Program[Ev2Clazz, EvCt2Obj]{
   override def prog(e: EvCt2Obj, classes: Set[Ev2Clazz]) =
     (_) => e(classes.map {c => c()}.map {c => c.name -> c}.toMap)

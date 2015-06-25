@@ -5,6 +5,8 @@ import scala.collection.mutable.MutableList
 trait SetField[E] { def setField(e: E, f: String, e1: E): E }
 trait Seq[E]{ def seq(e1: E, e2: E): E }
 
+trait SFJ[L,M,E] extends FJ[L,M,E] with SetField[E] with Seq[E]
+
 trait EvCtSt2ObjNew extends New[EvCtSt2Obj]{
  
   override def newObj(n: String, args: List[EvCtSt2Obj])  =

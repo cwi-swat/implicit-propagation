@@ -1,7 +1,7 @@
 package nl.cwi.improp.examples.fj
 
 
-class CTBuilder extends LJ[Clazz, Method, CT]{
+class CTBuilder extends SFJ[Clazz, Method, CT]{
   override def prog(e: CT, classes: Set[Clazz]) =
      classes.map {c => c.name -> c}.toMap
   
