@@ -65,7 +65,7 @@ object Utils{
      case List() => List()
      case tt :: tts => 
        if (srcTypes.contains(tt))
-         true :: argsAreCurried(srcTypes diff List(tt), tgtTypes)
+         true :: argsAreCurried(srcTypes diff List(tt), tts)
        else 
          false :: argsAreCurried(srcTypes, tts)
    }
