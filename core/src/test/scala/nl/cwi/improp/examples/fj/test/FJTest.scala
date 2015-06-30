@@ -213,7 +213,6 @@ class FJTest extends TestCase {
     val sfj = new SFJImplWithCodeGen{}
     val o = ex3(sfj)(null, null, Map(), st)
     val ct = ex2(new CTBuilder)
-    println(getObj(o.hashCode(), st, ct))
     assertEquals("new Two()", getObj(o.hashCode(), st, ct).toString())
   }
 }
