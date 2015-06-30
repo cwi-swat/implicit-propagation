@@ -76,6 +76,7 @@ trait Ev2ObjNew extends New[Ev2Obj]{
     () => new Obj(c, args.map(f=> f()))
 }
 
+
 trait EvCt2ObjCast extends Cast[EvCt2Obj]{
   def cast(c: Str, e: EvCt2Obj) =
     (ct) =>{

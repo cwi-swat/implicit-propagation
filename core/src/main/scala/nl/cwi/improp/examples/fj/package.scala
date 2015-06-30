@@ -3,9 +3,9 @@ package nl.cwi.improp.examples
 import scala.collection._
 
 package object fj {
-  type Env = Map[Str, Obj]
-  type CT = Map[Str, Clazz]
-  type Sto = mutable.Map[Int, (Str, Map[Str, Int])]
+  type Env = immutable.Map[Str, Obj]
+  type CT = immutable.Map[Str, Clazz]
+  type Sto = mutable.Map[Int, (Str, immutable.Map[Str, Int])]
   type Str = String
   type Ev2Obj = () => Obj
   type Ev2Meth = () => Method

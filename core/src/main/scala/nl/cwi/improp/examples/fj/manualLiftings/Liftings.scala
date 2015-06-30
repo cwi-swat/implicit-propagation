@@ -1,4 +1,34 @@
-package nl.cwi.improp.examples.fj
+package nl.cwi.improp.examples.fj.manualLiftings
+
+import nl.cwi.improp.examples.fj.Env
+import nl.cwi.improp.examples.fj.EvSlfCtESt2Clazz
+import nl.cwi.improp.examples.fj.Program
+import nl.cwi.improp.examples.fj.Ev2MethEv2ClazzClazzDef
+import nl.cwi.improp.examples.fj.SetField
+import nl.cwi.improp.examples.fj.EvCT2ObjField
+import nl.cwi.improp.examples.fj.Ev2ClazzEvCt2ObjProgram
+import nl.cwi.improp.examples.fj.EvCtSt2ObjNew
+import nl.cwi.improp.examples.fj.EvCt2ObjCast
+import nl.cwi.improp.examples.fj.ClazzDef
+import nl.cwi.improp.examples.fj.EvSlfCtEnv2ObjCall
+import nl.cwi.improp.examples.fj.EvSlfCtESt2Meth
+import nl.cwi.improp.examples.fj.Ev2MethEv2ObjMethodDef
+import nl.cwi.improp.examples.fj.Ev2ObjSeq
+import nl.cwi.improp.examples.fj.Cast
+import nl.cwi.improp.examples.fj.MethodDef
+import nl.cwi.improp.examples.fj.EvCtSt2ObjSetField
+import nl.cwi.improp.examples.fj.Sto
+import nl.cwi.improp.examples.fj.EvSlfCtESt2Obj
+import nl.cwi.improp.examples.fj.SFJ
+import nl.cwi.improp.examples.fj.Str
+import nl.cwi.improp.examples.fj.EvSlfCtESt2ObjRef
+import nl.cwi.improp.examples.fj.CT
+import nl.cwi.improp.examples.fj.Field
+import nl.cwi.improp.examples.fj.Obj
+import nl.cwi.improp.examples.fj.New
+import nl.cwi.improp.examples.fj.Call
+import nl.cwi.improp.examples.fj.Seq
+
 
 //type EvSlfCtESt2Obj =  (Obj, CT, Env, Sto) => Obj
 

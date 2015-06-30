@@ -43,8 +43,9 @@ case class Method(val name: String, val params: List[Param], val rTy: Type, val 
         srcF.ptys, 
         freshParamNames,
         tgtFun.ptys, carrierSymbol) }
+    val freshParams = freshParamNames.zip(tgtFun.ptys).map {case (name, ty) => name +": "+ ty.toString}
     val body = liftExprTo(baseAlgName+"."+name+"("+loweredArgs.mkString(", ")+")", srcF.ptys, freshParamNames, tgtFun.ptys)
-    val functionCall = s"(${freshParamNames.mkString(", ")}) => ${body}"
+    val functionCall = s"(${freshParams.mkString(", ")})  => ${body}"
     new Method(name, tgtParams, tgtRType, false, functionCall)
   }
 }
@@ -72,8 +73,8 @@ object Utils{
    
    def lowerTo(p: Param, srcParamTypes: List[Type], tgtParamNames: List[String], tgtParamTypes: List[Type], absTy: String): String = {
      val areCurried = argsAreCurried(srcParamTypes, tgtParamTypes)
-     val curriedArgs = areCurried.zip(tgtParamNames).map 
-       { case (isCurried, name) => if (isCurried) "_" else name}
+     val curriedArgs = areCurried.zip(tgtParamNames.zip(tgtParamTypes)).map 
+       { case (isCurried, (name,ty)) => if (isCurried) s"_ :${ty.toString}" else name}
      lowerArg(p, absTy, curriedArgs, srcParamTypes.isEmpty)
    }
    

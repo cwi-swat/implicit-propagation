@@ -1,8 +1,11 @@
-package nl.cwi.improp.examples.fj
+package nl.cwi.improp.examples.fj.test
 
 import junit.framework.TestCase
 import org.junit.Test
 import org.junit.Assert.assertEquals
+import nl.cwi.improp.examples.fj.manualLiftings.SFJImpl
+import nl.cwi.improp.examples.fj.generatedLiftings.SFJImplWithCodeGen
+import nl.cwi.improp.examples.fj._
 
 class FJTest extends TestCase {
  
@@ -64,13 +67,20 @@ class FJTest extends TestCase {
     val o = ex1(sfj)(null, null, Map(), st)
     assertEquals("new One()", o.toString())
   }
+  
+  @Test def test1gen = {
+    var st: Sto = scala.collection.mutable.Map()
+    val sfj = new SFJImplWithCodeGen{}
+    val o = ex1(sfj)(null, null, Map(), st)
+    assertEquals("new One()", o.toString())
+  }
         
   /*
    * EXAMPLE 2
    * ---------
    * 
-   * This is a LJ program. LJ extends FJ with field assignment, thus it needs an extra
-   * semantic entity: the store
+   * This is a SFJ program. LJ extends SFJ with field assignment and sequencing,
+   * thus it needs an extra semantic entity: the store
    * 
    * class A extends Object{
    *   Number number;
@@ -109,7 +119,7 @@ class FJTest extends TestCase {
    */
   
 
-  def ex2[L, M, E, R](alg: SFJ[L, M, E]): E =
+  def ex2[L, M, E](alg: SFJ[L, M, E]): E =
     alg.prog(
         alg.call(alg.newObj("A", List(alg.newObj("One", List()))), "setNumberToTwo", List()),
         Set(
@@ -128,12 +138,20 @@ class FJTest extends TestCase {
     assertEquals("new A(new Two())", getObj(o.hashCode(), st, ct).toString())
   }
   
+  @Test def test2gen = {
+    var st: Sto = scala.collection.mutable.Map()
+    val sfj = new SFJImplWithCodeGen{}
+    val o = ex2(sfj)(null, null, Map(), st)
+    val ct = ex2(new CTBuilder)
+    assertEquals("new A(new Two())", getObj(o.hashCode(), st, ct).toString())
+  }
+  
     /*
    * EXAMPLE  3
    * ---------
    * 
-   * This is a LJ program. LJ extends FJ with field assignment, thus it needs an extra
-   * semantic entity: the store
+   * This is a SFJ program. SFJ extends FJ with field assignment and sequencing,
+   * thus it needs an extra semantic entity: the store
    * 
    * class A extends Object{
    *   Number number;
@@ -171,7 +189,7 @@ class FJTest extends TestCase {
    * 
    */
   
-    def ex3[L, M, E, R](alg: SFJ[L, M, E]): E =
+    def ex3[L, M, E](alg: SFJ[L, M, E]): E =
     alg.prog(
         alg.field(alg.call(alg.newObj("A", List(alg.newObj("One", List()))), "setNumberToTwo", List()), "number"),
         Set(
@@ -189,5 +207,13 @@ class FJTest extends TestCase {
     val ct = ex2(new CTBuilder)
     assertEquals("new Two()", getObj(o.hashCode(), st, ct).toString())
   }
-        
+       
+ @Test def test3gen = {
+    var st: Sto = scala.collection.mutable.Map()
+    val sfj = new SFJImplWithCodeGen{}
+    val o = ex3(sfj)(null, null, Map(), st)
+    val ct = ex2(new CTBuilder)
+    println(getObj(o.hashCode(), st, ct))
+    assertEquals("new Two()", getObj(o.hashCode(), st, ct).toString())
+  }
 }
