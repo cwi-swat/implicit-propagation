@@ -41,7 +41,6 @@ object lift{
         val base: Trait = importer.importTrait(baseType)
         
         val result = render(lifted, alg, base, srcFun)
-        println(result)
         c.Expr[Any](c.parse(result))
       }
       case _ => c.abort(c.enclosingPosition, "Invalid annottee")
