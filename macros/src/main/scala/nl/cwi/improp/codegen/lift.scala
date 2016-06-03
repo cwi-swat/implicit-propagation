@@ -9,18 +9,20 @@ class lift[ALG, FROM, BASEALG, TO] extends StaticAnnotation{
   def macroTransform(annottees: Any*) = macro lift.impl
 }
 
-
 object lift{
   
   def impl(c: whitebox.Context)(annottees: c.Expr[Any]*) = {
      import c.universe._
      
-     val (alg_, srcF, baseAlg, tgtTy): (Tree, Tree, Tree, Tree) = c.macroApplication match{
-       case q"new lift[$a, $from, $baseA, $to].macroTransform($_)" => (a, from, baseA, to)
-       case _ => c.abort(c.enclosingPosition, "Invalid type parameters")
+     val (alg_, srcF, baseAlg, tgtTy): (Tree, Tree, Tree, Tree) = 
+       c.macroApplication match{
+         case q"new lift[$a, $from, $baseA, $to].macroTransform($_)" => 
+           (a, from, baseA, to)
+         case _ => 
+           c.abort(c.enclosingPosition, "Invalid type parameters")
      }
      
-     val importer = new nl.cwi.improp.codegen.Importer[c.universe.type](c.universe)
+     val importer = new InternalImporter[c.universe.type](c.universe)
     
      annottees.map(_.tree) match {
       case (t@q"$mods trait $name") ::Nil => {
@@ -29,25 +31,22 @@ object lift{
         val srcType = c.typeCheck(q"(??? : $srcF)").tpe.map(_.normalize)
         val baseType = c.typeCheck(q"(??? : $baseAlg)").tpe.map(_.normalize)
         val tgtType = c.typeCheck(q"(??? : $tgtTy)").tpe.map(_.normalize)
-        val tempVar = c.freshName("temp")
         
-        implicit val nameGen: FreshNameGenerator = new FreshNameGenerator{
-          override def generateFresh(name: String): String = c.fresh(name)
-        }
         val alg: Trait = importer.importTrait(algType)
         val srcFun: FunType = importer.importType(srcType).asInstanceOf[FunType]
         val tgtFun : FunType = importer.importType(tgtType).asInstanceOf[FunType]
         val lifted: Trait = alg.liftTraitTo(name.decoded, srcFun, tgtFun, "base"+alg.name)
         val base: Trait = importer.importTrait(baseType)
-        
-        val result = render(lifted, alg, base, srcFun)
-        c.Expr[Any](c.parse(result))
+        val result: Expr[Any] = Render.serialize(c, lifted, alg, base, srcFun)
+        result 
       }
       case _ => c.abort(c.enclosingPosition, "Invalid annottee")
      }
   }
-     
-  def render(lifted: Trait, alg: Trait, baseAlg: Trait, srcFun: FunType): String = {
+}
+
+object Render{
+   def render(lifted: Trait, alg: Trait, baseAlg: Trait, srcFun: FunType): String = {
     def liftedMethods = lifted.methods.map
       { m =>
         s"""
@@ -63,4 +62,9 @@ object lift{
         |}""".stripMargin
   }
   
+  def serialize(c: whitebox.Context, lifted: Trait, alg: Trait, baseAlg: Trait, srcFun: FunType): c.Expr[Any]
+    = {   println(render(lifted, alg, baseAlg, srcFun));
+        c.Expr[Any](c.parse(render(lifted, alg, baseAlg, srcFun)));
+     }
+   
 }

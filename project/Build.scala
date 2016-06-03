@@ -32,8 +32,8 @@ object MyBuild extends Build {
     file("macros"),
     settings = buildSettings ++ Seq(
       libraryDependencies <++= (scalaVersion)(sv =>
-    Seq(//"org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
-    //"junit" % "junit" % "4.11" % "test",
+    Seq("org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
+    "junit" % "junit" % "4.11" % "test",
     "org.scala-lang" % "scala-reflect" % "2.11.6",
       "org.scala-lang" % "scala-compiler" % "2.11.6",
       "org.scala-lang" % "scala-library" % "2.11.6"

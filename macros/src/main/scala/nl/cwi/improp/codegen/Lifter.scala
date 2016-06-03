@@ -80,10 +80,10 @@ object Utils{
    
   def lower(p: Param, srcParams: List[Param], tgtParamName: String, absTy: String) = p match {
      case (pName, MappableType(mappableTy, AbsType(_))) => {
-       pName+".map { el => "+"("+ srcParams.map{ case (n,t) => n+": "+t  }.mkString(", ") +") => el("+ (tgtParamName::srcParams.map(_._1)).mkString(", ")+") }"
+       s"${pName}.map { el => (${srcParams.map{ case (n,t) => n+": "+t  }.mkString(", ")}) => el(${(tgtParamName::srcParams.map(_._1)).mkString(", ")}) }"
      }
      case (pName, AbsType(_))=>{
-       "("+ srcParams.map{ case (n,t) => n+": "+t  }.mkString(", ") +") => "+pName+"("+ (tgtParamName::srcParams.map(_._1)).mkString(", ")+")"
+       s"(${srcParams.map{ case (n,t) => n+": "+t  }.mkString(", ")}) => ${pName}(${(tgtParamName::srcParams.map(_._1)).mkString(", ")})"
        }
      case (pName, _) => pName 
    }
@@ -140,35 +140,32 @@ object Utils{
 case class Trait(val name: String, val typePars: List[String], val extending: List[TraitRef], val methods: List[Method]){
   def isTraitAbstract(): Boolean
     = this.methods.map(_.isAbstract).foldLeft(true)(_&&_)
-  def liftTrait(newName: String, srcF: FunType, addedParTy: Type, baseAlgName: String)(implicit freshNameGen: FreshNameGenerator): Trait =
+  def liftTrait(newName: String, srcF: FunType, addedParTy: Type, baseAlgName: String): Trait =
     if (isTraitAbstract())
-      this match {
-        case Trait(name, typePar, extending, methods) =>
-          if (typePar.size==1){
+     
+          if (typePars.size==1){
             val tgtF: FunType = new FunType(addedParTy::srcF.ptys, srcF.rty)
             val ms: List[Method] =
-              methods.map(_.lift(typePar.head, srcF, addedParTy, baseAlgName, typePar.head))
+              methods.map(_.lift(typePars.head, srcF, addedParTy, baseAlgName, typePars.head))
             new Trait(newName, List(), List(new TraitRef(this, List(tgtF))), ms)
           }
           else
             throw new Exception("The carrier type has to be unique")
-      }
+
     else
       throw new Exception("Trait algebra has to be abstract")
   
-   def liftTraitTo(newName: String, srcF: FunType, tgtF: FunType, baseAlgName: String)(implicit freshNameGen: FreshNameGenerator): Trait =
+   def liftTraitTo(newName: String, srcF: FunType, tgtF: FunType, baseAlgName: String): Trait =
     if (isTraitAbstract())
-      this match {
-        case Trait(name, typePar, extending, methods) =>
-          if (typePar.size==1){
+     
+          if (typePars.size==1){
             val ms: List[Method] =
-              methods.map(_.liftTo(typePar.head, srcF, tgtF, baseAlgName))
+              methods.map(_.liftTo(typePars.head, srcF, tgtF, baseAlgName))
             new Trait(newName, List(), List(new TraitRef(this, List(tgtF))), ms)
           }
           else
             throw new Exception("The carrier type has to be unique")
-      }
-    else
+     else
       throw new Exception("Trait algebra has to be abstract")
   
 }

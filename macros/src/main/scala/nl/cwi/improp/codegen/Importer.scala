@@ -4,7 +4,7 @@ import scala.tools.nsc
 import nsc.Global
 import scala.collection.generic.FilterMonadic
 
-class Importer[U<:scala.reflect.api.Universe](global: U){
+class InternalImporter[U<:scala.reflect.api.Universe](global: U){
   
   def importTrait(ty: global.Type): Trait = {
       // Replace with precondition that ensures it is a trait

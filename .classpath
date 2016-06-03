@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="core/src/main/java"/>
-	<classpathentry kind="src" path="core/src/main/resources"/>
 	<classpathentry kind="src" path="core/src/main/scala"/>
 	<classpathentry kind="src" path="macros/src/main/java"/>
-	<classpathentry kind="src" path="macros/src/main/resources"/>
 	<classpathentry kind="src" path="macros/src/main/scala"/>
 	<classpathentry kind="src" path="macros/src/test/java"/>
-	<classpathentry kind="src" path="macros/src/test/resources"/>
 	<classpathentry kind="src" path="macros/src/test/scala"/>
 	<classpathentry kind="src" path="core/src/test/java"/>
-	<classpathentry kind="src" path="core/src/test/resources"/>
 	<classpathentry kind="src" path="core/src/test/scala"/>
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_COMPILER_CONTAINER"/>
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>

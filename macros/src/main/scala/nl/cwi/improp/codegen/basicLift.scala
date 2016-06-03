@@ -9,7 +9,6 @@ class basicLift[ALG, FROM, TO, BASEALG] extends StaticAnnotation{
   def macroTransform(annottees: Any*) = macro basicLift.impl
 }
 
-
 object basicLift{
   
   def impl(c: whitebox.Context)(annottees: c.Expr[Any]*) = {
@@ -20,7 +19,7 @@ object basicLift{
        case _ => c.abort(c.enclosingPosition, "Invalid type parameters")
      }
      
-     val importer = new nl.cwi.improp.codegen.Importer[c.universe.type](c.universe)
+     val importer = new InternalImporter[c.universe.type](c.universe)
     
      annottees.map(_.tree) match {
        case (t@q"$mods trait $name") ::Nil => {
