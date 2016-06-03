@@ -63,7 +63,7 @@ object Render{
   }
   
   def serialize(c: whitebox.Context, lifted: Trait, alg: Trait, baseAlg: Trait, srcFun: FunType): c.Expr[Any]
-    = {   println(render(lifted, alg, baseAlg, srcFun));
+    = { //println(render(lifted, alg, baseAlg, srcFun));
         c.Expr[Any](c.parse(render(lifted, alg, baseAlg, srcFun)));
      }
    
