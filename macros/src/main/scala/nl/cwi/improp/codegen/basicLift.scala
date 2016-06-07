@@ -19,7 +19,7 @@ object basicLift{
        case _ => c.abort(c.enclosingPosition, "Invalid type parameters")
      }
      
-     val importer = new InternalImporter[c.universe.type](c.universe)
+     val importer = new IImporter[c.universe.type](c.universe)
     
      annottees.map(_.tree) match {
        case (t@q"$mods trait $name") ::Nil => {
