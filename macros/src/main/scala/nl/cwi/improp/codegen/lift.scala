@@ -24,17 +24,17 @@ object lift{
      }
      
      // Get the types of the annotation arguments
-      val (algType: Type, srcType: Type, baseImplType: Type, tgtType: Type) = 
-        Checker.typeCheck(c)(algAST, srcFunAST, baseAlgAST, tgtFunAST)
+     val (algType: Type, srcType: Type, baseImplType: Type, tgtType: Type) 
+       = Checker.typeCheck(c)(algAST, srcFunAST, baseAlgAST, tgtFunAST)
     
-      // Create importer that allows to create intermediate representations
-      // of traits and function types
-      val (alg: Trait, srcFun: FunType, baseImpl: Trait, tgtFun: FunType)
-        = InternalImporter.importTypes(c)(algType, srcType, baseImplType, tgtType)
+     // Create importer that allows to create intermediate representations of traits and 
+     // function types based on the annotation arguments
+     val (alg: Trait, srcFun: FunType, baseImpl: Trait, tgtFun: FunType)
+       = InternalImporter.importTypes(c)(algType, srcType, baseImplType, tgtType)
       
      // At least one annottee must be a trait
      annottees.map(_.tree) match {
-      case (t@q"$mods trait $name") ::Nil => {
+      case (q"$mods trait $name") ::Nil => {
         
         // This is the code that triggers the lifting on the intermediate representations
         val lifted: Trait = alg.liftTraitTo(name.decoded, srcFun, tgtFun, "base"+alg.name)
